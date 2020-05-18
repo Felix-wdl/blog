@@ -1,20 +1,106 @@
-<!--
- * @Author: your name
- * @Date: 2019-12-11 09:43:27
- * @LastEditTime: 2019-12-11 09:45:17
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /blog/index.html
- -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>汤圆</title>
+    <title>520</title>
+    <style>
+        ul,
+        li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            width: 400px;
+            margin: 0 auto;
+
+        }
+
+        ul {
+            font-size: 0;
+        }
+
+        li {
+            margin: 20px;
+            display: inline-block;
+            width: 120px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            font-size: 24px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            margin-left: 20px;
+            width: 280px;
+            height: 60px;
+            background: #08ca8c;
+            text-align: center;
+            line-height: 60px;
+            font-size: 24PX;
+            color: #FFF;
+            border: 1px solid #08ca8c;
+            border-radius: 10px;
+
+        }
+
+        .active {
+            color: #FFF;
+            background: #08ca8c;
+            border: 1px solid #08ca8c;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>hello word</h1>
+    <div class="main">
+        <ul>
+            <li>特等奖</li>
+            <li>一等奖</li>
+            <li>二等奖</li>
+            <li>三等奖</li>
+        </ul>
+        <div class="btn">抽抽抽</div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var click = false;
+            $('.btn').click(function () {
+                if(click){
+                    return;
+                }
+                click = true;
+                let active = 0;
+                var timer = setInterval(function () {
+                    $('.main ul li').removeClass('active');
+                    $('.main ul li').eq(active).addClass('active');
+                    active++;
+                    if (active > 4) {
+                        active = 0;
+                    }
+                }, 100);
+                var stopTime = Math.random() * 1000 + Math.random() * 100 + Math.random() * 10 + 3000;
+                console.log(stopTime);
+                setTimeout(() => {
+                    clearInterval(timer);
+                    active = 0;
+                    click = false;
+                    var num = parseInt(Math.random() * 10 % 3 + 1);
+                    console.log(num);
+                    $('.main ul li').removeClass('active');
+                    $('.main ul li').eq(num).addClass('active');
+                }, stopTime);
+             
+            });
+        });
+
+
+    </script>
 </body>
+
 </html>
